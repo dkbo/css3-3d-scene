@@ -1,0 +1,115 @@
+@import 'compass'
+$perspective: 800px
+$planeW : 8000px
+$planeH : 3000px
+@mixin cube($w, $h, $x, $y, $z, $rx, $ry, $rz)
+  transform-style: preserve-3d
+  transform: rotateX(#{$rx}deg) rotateY(#{$ry}deg) rotateZ(#{$rz}deg) translate3D($x, $y, $h / 2 + $z) 
+  .face
+    transform-style: preserve-3d
+    position: absolute
+    background: url('http://img.zcool.cn/community/0333f8e554c778300000158fcc496c6.jpg')
+    background-size: cover
+    &:nth-child(1)
+      width: $w
+      height: $h
+      +transform(rotateX(90deg) translateZ($h / 2))
+    &:nth-child(2)
+      width: $w
+      height: $h
+      +transform(rotateX(270deg) translateZ($w - $h / 2))
+    &:nth-child(3)
+      width: $h
+      height: $w
+      +transform(rotateY(90deg) translateZ($w - $h / 2))
+    &:nth-child(4)
+      width: $h
+      height: $w
+      +transform(rotateY(270deg) translateZ($h / 2))
+    &:nth-child(5)
+      width: $w
+      height: $w
+      +transform(translateZ($h/2))
+    &:nth-child(6)
+      width: $w
+      height: $w
+      +transform(translateZ(-$h/2))
+
+
+
+html,body,#scene
+  width: 100%
+  height: 100%
+  overflow: hidden
+  margin: 0
+  background: #151514
+#scene
+  perspective: $perspective
+  #camera
+    transform: translate3D(0,0,$perspective) rotateX(0deg) rotateY(0deg) rotateZ(0deg)
+#fps
+  transform: translate3D(-400px, 0, 400px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)
+#plane,#plane2,#plane3,#plane4,#plane5,#plane6
+  width: $planeW
+  height: $planeH
+#plane
+  transform: translate3D(0, -$planeH / 2 + 250px, -$planeH / 2) rotateX(90deg) rotateY(0deg) rotateZ(0deg)
+  background: url('http://dkbo.github.io/images/bg.jpg')
+#plane2
+  transform: translate3D($planeH / 2, -$planeH / 3 - $planeH / 2, -$planeH / 2) rotateX(0deg) rotateY(-90deg) rotateZ(0deg)
+  background: url("http://www.scan001.com/images/pbh3/wall/20060607/cloudsky004.jpg")
+  background-size: cover
+#plane3
+  transform: translate3D(-$planeH / 2,  -$planeH / 3 - $planeH / 2, -$planeH / 2) rotateX(0deg) rotateY(90deg) rotateZ(0deg)
+  background: url("http://www.scan001.com/images/pbh3/wall/20060607/cloudsky004.jpg")
+  background-size: cover
+#plane4
+  transform: translate3D(0,  -$planeH / 3 - $planeH / 2, 0) rotateX(0deg) rotateY(180deg) rotateZ(0deg)
+  background: url("http://www.scan001.com/images/pbh3/wall/20060607/cloudsky004.jpg")
+  background-size: cover
+#plane5
+  transform: translate3D(0,  -$planeH / 3 - $planeH / 2, -$planeH) rotateX(0deg) rotateY(0deg) rotateZ(0deg)
+  background: url("http://www.scan001.com/images/pbh3/wall/20060607/cloudsky004.jpg")
+  background-size: cover
+#plane6
+  transform: translate3D(0, -$planeH * 4 / 3, -1500px) rotateX(90deg) rotateY(180deg) rotateZ(0deg)
+  background: url("http://www.scan001.com/images/pbh3/wall/20060607/cloudsky004.jpg")
+  background-size: cover
+.about
+  position: absolute
+  .font
+    position: absolute
+    width: 987px
+    color: wheat
+    h1,p
+      margin: 0
+    h1
+      font-size: 10em
+    p
+      font-size: 5em
+    @for $i from 1 through 20
+      &:nth-child(#{$i})
+        transform: translate3D(240px, 640px - $i, 320px) rotateX(-90deg) rotateY(0deg) rotateZ(0deg)
+
+.assembly
+  transform-style: preserve-3d
+  backface-visibility: hidden
+.pos
+  position: absolute
+  left: 50%
+  top: 50%
+
+#stone
+  +cube(300px, 100px, 200px, 300px, 0px, 0, 0, 0)
+#stone1
+  +cube(240px, 60px, 230px, 330px, 100px, 0, 0, 0)
+#stone2
+  +cube(160px, 40px, 270px, 370px, 160px, 0, 0, 0)
+#stone3
+  +cube(100px, 20px, 300px, 400px, 200px, 0, 0, 0)
+#stone4
+  +cube(60px, 10px, 320px, 420px, 220px, 0, 0, 0)
+#stone5
+  +cube(30px, 100px, 335px, 435px, 230px, 0, 0, 0)
+#house
+  +cube(2000px, 6000px, 2600px, 500px, 0px, 0, 0, 0)
